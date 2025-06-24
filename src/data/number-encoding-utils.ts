@@ -51,7 +51,7 @@ export function encodeNumber(_number: number): Uint8Array {
  */
 export function decodeNumber(bytes: Uint8Array): number {
   let result = 0;
-  const length = Math.min(bytes.length, 4);
+  const length = Math.min(bytes.length, 5);
 
   for (let i = 0; i < length; ++i) {
     let value = bytes[i];
