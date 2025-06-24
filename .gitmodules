@@ -1,4 +1,0 @@
-[submodule "scripts/eo-protocol"]
-    path = scripts/eo-protocol
-    url = https://github.com/Cirras/eo-protocol.git
-    branch = master
