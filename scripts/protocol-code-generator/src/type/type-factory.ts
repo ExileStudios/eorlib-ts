@@ -79,6 +79,9 @@ export class TypeFactory {
       case "int":
         result = new IntegerType(name, 4);
         break;
+      case "five":
+        result = new IntegerType(name, 5);
+        break;
       case "bool":
         underlyingType ??= this.getType("char") as IntegerType;
         result = new BoolType(underlyingType);

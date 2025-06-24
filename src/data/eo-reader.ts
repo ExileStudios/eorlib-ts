@@ -121,6 +121,15 @@ export class EoReader {
   }
 
   /**
+   * Reads an encoded 5-byte integer from the input data.
+   *
+   * @returns A decoded 5-byte integer
+   */
+  public getFive(): number {
+    return decodeNumber(this.readBytes(5));
+  }
+
+  /**
    * Reads a string from the input data.
    *
    * @returns A string

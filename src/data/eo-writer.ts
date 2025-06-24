@@ -5,6 +5,7 @@ import {
   SHORT_MAX,
   THREE_MAX,
   INT_MAX,
+  FIVE_MAX,
 } from "./eo-numeric-limits.js";
 
 import { encode1252 } from "./windows-1252.js";
@@ -84,6 +85,18 @@ export class EoWriter {
     EoWriter.checkNumberSize(int, INT_MAX - 1);
     const bytes: Uint8Array = encodeNumber(int);
     this.doAddBytes(bytes, 4);
+  }
+
+  /**
+   * Adds an encoded 5-byte integer to the writer data.
+   *
+   * @param number - the number to encode and add
+   * @throws `Error` if the value is not below {@link FIVE_MAX}.
+   */
+  public addFive(five: number): void {
+    EoWriter.checkNumberSize(five, FIVE_MAX - 1);
+    const bytes: Uint8Array = encodeNumber(five);
+    this.doAddBytes(bytes, 5);
   }
 
   /**

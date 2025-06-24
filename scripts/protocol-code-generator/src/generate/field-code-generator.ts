@@ -528,6 +528,8 @@ class FieldCodeGenerator {
         return `writer.addThree(${valueExpression})`;
       case "int":
         return `writer.addInt(${valueExpression})`;
+      case "five":
+        return `writer.addFive(${valueExpression})`;
       case "string":
         if (lengthExpression === null) {
           return `writer.addString(${valueExpression})`;
@@ -678,6 +680,8 @@ class FieldCodeGenerator {
         return "reader.getThree()";
       case "int":
         return "reader.getInt()";
+      case "five":
+        return "reader.getFive()";
       case "string":
         if (lengthExpression === null) {
           return "reader.getString()";

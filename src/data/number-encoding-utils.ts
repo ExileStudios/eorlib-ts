@@ -1,4 +1,9 @@
-import { CHAR_MAX, SHORT_MAX, THREE_MAX } from "./eo-numeric-limits.js";
+import {
+  CHAR_MAX,
+  SHORT_MAX,
+  THREE_MAX,
+  INT_MAX,
+} from "./eo-numeric-limits.js";
 
 /**
  * Encodes a number to a sequence of bytes.
@@ -8,6 +13,13 @@ import { CHAR_MAX, SHORT_MAX, THREE_MAX } from "./eo-numeric-limits.js";
  */
 export function encodeNumber(_number: number): Uint8Array {
   let value = _number;
+
+  let e = 0xfe;
+  if (_number >= INT_MAX) {
+    e = Math.trunc(value / INT_MAX) + 1;
+    value = value % INT_MAX;
+  }
+
   let d = 0xfe;
   if (_number >= THREE_MAX) {
     d = Math.trunc(value / THREE_MAX) + 1;
@@ -28,7 +40,7 @@ export function encodeNumber(_number: number): Uint8Array {
 
   let a = value + 1;
 
-  return new Uint8Array([a, b, c, d]);
+  return new Uint8Array([a, b, c, d, e]);
 }
 
 /**
@@ -63,6 +75,8 @@ export function decodeNumber(bytes: Uint8Array): number {
       case 3:
         result += THREE_MAX * value;
         break;
+      case 4:
+        result += INT_MAX * value;
     }
   }
 
