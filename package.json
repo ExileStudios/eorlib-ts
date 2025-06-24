@@ -31,7 +31,7 @@
     "test:coverage": "vitest run --coverage",
     "docs": "typedoc",
     "prepack": "npm run build",
-    "prepare": "husky",
+    "prepare": "npm run build && husky",
     "pre-commit": "lint-staged",
     "version": "tsx scripts/bump-changelog-version.ts && git add CHANGELOG.md"
   },
